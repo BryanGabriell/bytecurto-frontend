@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ByteCurto Cadastro</title>
-    <link rel="stylesheet" href="./css/cadastro.css">
+    <link rel="stylesheet" href="/css/cadastro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="./img/logoByteCurto.png">
+    <link rel="icon" href="/img/logoByteCurto.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <div class="card">
 
-        <img src="./img/logoByteCurto.png" alt="Logo ByteCurto" class="logo">
+        <img src="/img/logoByteCurto.png" alt="Logo ByteCurto" class="logo">
 
         <h1>Criar Conta</h1>
-        <p>Crie links curtos em segundos com o ByteCurto</p>
+        <p id="paragrafo">Crie links curtos em segundos com o ByteCurto</p>
         <form action="" id="bytecurto-formulario">
             <input type="text" name="nome" id="nome" placeholder="Nome">
-            <input type="text" name="email" id="Email" placeholder="Email">
-            <input type="password" name="senha" placeholder="Senha">
-            <button type="button">Criar</button>
+            <input type="text" name="email" id="email" placeholder="Email">
+            <input type="password" name="senha" id="senha" placeholder="Senha">
+            <button type="button" id="btnCriar">Criar</button>
         </form>
     </div>
 </body>
-<script src="./js/cadastro.js"></script>
+<script type="module" src="/js/pages/cadastro.js"></script>
 </html>
