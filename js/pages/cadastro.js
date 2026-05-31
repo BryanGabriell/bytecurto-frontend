@@ -29,7 +29,7 @@ async function cadastrarUsuario(event){
     const resposta = await cadastrarUsuarioService(dadosUsuario);
     if(resposta.ok){
         paragrafoErro.textContent = "Usuario cadastrado com sucesso! Redirecionando...";
-        paragrafoErro.style.color = "2ecc71";
+        paragrafoErro.style.color = "#2ecc71";
 
         setTimeout(() => {
             window.location.href = "/pages/login.html";
@@ -37,12 +37,12 @@ async function cadastrarUsuario(event){
     } else {
         const erroServidor = await resposta.json();
         paragrafoErro.textContent = erroServidor.mensagem || "Erro ao cadastrar usuario";
-        paragrafoErro.style.color = "ff4d4d";
+        paragrafoErro.style.color = "#ff4d4d";
     }
     
    } catch (error) {
     paragrafoErro.textContent = "Não foi possivel conectar ao servidor";
-    paragrafoErro.style.color = "ff4d4d";
+    paragrafoErro.style.color = "#ff4d4d";
    }
 
 
