@@ -1,5 +1,6 @@
 import { validarCamposLogin } from "../utils/validation.js";
 import { loginUsuarioService } from "../services/authService.js";
+import { storage } from "../utils/storage.js";
 
 const inputEmail = document.getElementById("email");
 const inputSenha = document.getElementById("senha");
@@ -27,7 +28,7 @@ try {
         const dados = await resposta.json();
         const token = dados.token;
 
-        localStorage.setItem("token", token);
+        storage.salvarToken(token);
 
         mensagemErro.textContent = "Login realizado com sucesso! Entrando...";
         mensagemErro.style.color = "#2ECC71";
