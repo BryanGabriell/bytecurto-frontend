@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ByteCurto Login</title>
-    <link rel="stylesheet" href="./css/cadastro.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="./img/logoByteCurto.png">
+    <link rel="icon" href="/img/logoByteCurto.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <div class="card">
 
-        <img src="./img/logoByteCurto.png" alt="Logo ByteCurto" class="logo">
+        <img src="/img/logoByteCurto.png" alt="Logo ByteCurto" class="logo">
 
         <h1>Login</h1>
-        <p>Crie links curtos em segundos com o ByteCurto</p>
+        <p id="mensagem-erro">Crie links curtos em segundos com o ByteCurto</p>
         <form action="" id="bytecurto-formulario">
-            <input type="text" name="email" id="Email" placeholder="Email">
-            <input type="password" name="senha" placeholder="Senha">
-            <button type="button">Logar</button>
+            <input type="text" name="email" id="email" placeholder="Email">
+            <input type="password" name="senha" id="senha"  placeholder="Senha">
+            <button type="button" id="btnLogar">Logar</button>
         </form>
     </div>
 </body>
-<script src="/js/pages/login.js"></script>
+<script type="module" src="/js/pages/login.js"></script>
 </html>
