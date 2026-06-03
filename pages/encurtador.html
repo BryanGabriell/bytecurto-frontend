@@ -1,62 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-Br">
 <head>
-
     <meta charset="UTF-8">
-
-    <title>ByteCurto</title>
-
-    <link rel="stylesheet" href="./css/encurtador.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteCurto - Encurtador</title>
+    <link rel="stylesheet" href="/css/encurtador.css">
+    <link rel="icon" href="/img/logoByteCurto.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <div class="container">
-
-    <img src="./img/logoByteCurto.png"
-    class="logo">
+    <img src="/img/logoByteCurto.png" alt="Logo ByteCurto" class="logo">
 
     <h1>ByteCurto</h1>
-
-    <p>
-        Encurte seus links rapidamente.
-    </p>
+    <p id="mensagem-status">Encurte seus links rapidamente.</p>
 
     <div class="box-url">
-
-        <input
-        type="text"
-        placeholder="Cole sua URL aqui">
-
-        <button>
-            Encurtar
-        </button>
-
+        <input type="text" id="url-original" placeholder="Cole sua URL aqui">
+        
+        <button id="btn-encurtar">Encurtar</button>
     </div>
 
-    <div class="resultado">
-
-        <p>
-            Seu link curto:
-        </p>
+    <div class="resultado" id="secao-resultado">
+        <p>Seu link curto:</p>
 
         <div class="link-box">
+            <span id="link-gerado">bytecurto.com/a8F91x</span>
 
-            <span>
-                bytecurto.com/a8F91x
-            </span>
-
-            <button>
-                Copiar
-            </button>
-
+            <button id="btn-copiar">Copiar</button>
         </div>
-
     </div>
-
 </div>
+
 </body>
 <script type="module" src="/js/pages/encurtador.js"></script>
 </html>

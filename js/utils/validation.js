@@ -47,5 +47,32 @@ export function validarCamposLogin(email,senha){
     }
 
      mensagemErro.textContent = "";
+     mensagemErro.style.color = "";
+    return true;
+}
+
+export function validarCamposUrl(url){
+    const mensagemErroUrl = document.getElementById("mensagem-status");
+    if(url === ""){
+    mensagemErroUrl.textContent = "Digite uma url";
+    mensagemErroUrl.style.color = "#ff4d4d";
+    return false;
+}
+
+try {
+    new URL(url);
+} catch (error) {
+     mensagemErroUrl.textContent = "URL inválida";
+        mensagemErroUrl.style.color = "#ff4d4d";
+        return false;
+}
+
+if(url.length > 2048){
+    mensagemErroUrl.textContent = "O limite de caracteres é 2048";
+    mensagemErroUrl.style.color = "#ff4d4d";
+    return false;
+}
+ mensagemErroUrl.textContent = "";
+ mensagemErroUrl.style.color = "";
     return true;
 }

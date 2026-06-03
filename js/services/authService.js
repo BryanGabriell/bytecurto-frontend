@@ -25,3 +25,4 @@ export async function loginUsuarioService(dadosLogin) {
     
     return resposta;
 }
+
