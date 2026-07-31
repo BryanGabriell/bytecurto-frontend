@@ -3,33 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ByteCurto - Encurtador</title>
-    <link rel="stylesheet" href="css/encurtador.css">
-    <link rel="icon" href="img/logoByteCurto.png">
+    <title>ByteCurto Cadastro</title>
+    <link rel="stylesheet" href="css/cadastro.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="img/logoByteCurto.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="card">
         <img src="img/logoByteCurto.png" alt="Logo ByteCurto" class="logo">
+        <h1>Criar Conta</h1>
+        <p id="paragrafo">Crie links curtos em segundos com o ByteCurto</p>
 
-        <h1>ByteCurto</h1>
-        <p id="mensagem-status">Encurte seus links rapidamente.</p>
-
-        <div class="box-url">
-            <input type="text" id="url-original" placeholder="Cole sua URL aqui">
-            <button id="btn-encurtar">Encurtar</button>
-        </div>
-
-        <div class="resultado" id="secao-resultado" style="display: none;">
-            <p>Seu link curto:</p>
-            <div class="link-box">
-                <span id="link-gerado"></span>
-                <button id="btn-copiar">Copiar</button>
-            </div>
-        </div>
+        <form id="bytecurto-formulario">
+            <input type="text" name="nome" id="nome" placeholder="Nome" required>
+            <input type="text" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+            <button type="submit" id="btnCriar">Criar</button>
+        </form>
     </div>
-    <script type="module" src="js/pages/encurtador.js"></script>
+    <script type="module" src="js/pages/cadastro.js"></script>
 </body>
 </html>
