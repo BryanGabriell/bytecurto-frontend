@@ -1,4 +1,4 @@
-import { LINK_API_URL } from "../api/linkApi";
+const LINK_API_URL = "http://localhost:8080/api/links/encurtar";
 
 export async function encurtarLinkService(dadosLink, token) {
     const resposta = await fetch(LINK_API_URL, {

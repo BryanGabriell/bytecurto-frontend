@@ -6,7 +6,7 @@ const inputEmail = document.getElementById("email");
 const inputNome = document.getElementById("nome");
 const inputSenha = document.getElementById("senha");
 const paragrafoErro = document.getElementById("paragrafo");
-const botaoCriar = document.getElementById("btnCriar");
+const formulario = document.getElementById("bytecurto-formulario");
 
 async function cadastrarUsuario(event){
     event.preventDefault();
@@ -20,9 +20,9 @@ async function cadastrarUsuario(event){
    } 
 
    const dadosUsuario = {
-    nome: nomeLimpo,
+    name: nomeLimpo,
     email: emailLimpo,
-    senha: senhaLimpo
+    password: senhaLimpo
    };
 
    try {
@@ -48,4 +48,4 @@ async function cadastrarUsuario(event){
 
 }
 
-botaoCriar.addEventListener("click", cadastrarUsuario);
+formulario.addEventListener("submit", cadastrarUsuario);

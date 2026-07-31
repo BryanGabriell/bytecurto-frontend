@@ -5,47 +5,52 @@ import { storage } from "../utils/storage.js";
 const inputEmail = document.getElementById("email");
 const inputSenha = document.getElementById("senha");
 const mensagemErro = document.getElementById("mensagem-erro");
-const btnLogar = document.getElementById("btnLogar");
+const formulario = document.getElementById("bytecurto-formulario"); 
 
 async function loginUsuario(event) {
-    event.preventDefault();
+    event.preventDefault(); 
 
-const emailLimpo = inputEmail.value.trim();
-const senhaLimpa = inputSenha.value.trim();
+    const emailLimpo = inputEmail.value.trim();
+    const senhaLimpa = inputSenha.value.trim();
 
-if(!validarCamposLogin(emailLimpo,senhaLimpa)){
-    return;
-}
+    if (!validarCamposLogin(emailLimpo, senhaLimpa)) {
+        return;
+    }
 
-const dadosLogin = {
-    email: emailLimpo,
-    senha: senhaLimpa
-};
+    const dadosLogin = {
+        email: emailLimpo,
+        password: senhaLimpa
+    };
 
-try {
-    const resposta = await loginUsuarioService(dadosLogin);
-    if(resposta.ok){
-        const dados = await resposta.json();
-        const token = dados.token;
+    try {
+        mensagemErro.textContent = "Autenticando...";
+        mensagemErro.style.color = "#3498DB";
 
-        storage.salvarToken(token);
+        const resposta = await loginUsuarioService(dadosLogin);
+        
+        if (resposta.ok) {
+            const dados = await resposta.json();
+            const token = dados.token;
 
-        mensagemErro.textContent = "Login realizado com sucesso! Entrando...";
-        mensagemErro.style.color = "#2ECC71";
+            storage.salvarToken(token);
 
-        setTimeout(() => {
-            window.location.href = "/pages/encurtador.html";
-        }, 1500);
+            mensagemErro.textContent = "Login realizado com sucesso! Entrando...";
+            mensagemErro.style.color = "#2ECC71";
 
-    } else {
-        const erroServidor = await resposta.json();
-        mensagemErro.textContent = erroServidor.mensagem || "E-mail ou senha incorretos.";
+            setTimeout(() => {
+                window.location.href = "/pages/encurtador.html";
+            }, 1500);
+
+        } else {
+            const erroServidor = await resposta.json();
+            mensagemErro.textContent = erroServidor.mensagem || "E-mail ou senha incorretos.";
+            mensagemErro.style.color = "#ff4d4d";
+        }
+    } catch (error) {
+        mensagemErro.textContent = "Erro ao conectar com o servidor.";
         mensagemErro.style.color = "#ff4d4d";
     }
-} catch (error) {
-    mensagemErro.textContent = "Erro ao conectar com o servidor.";
-    mensagemErro.style.color = "#ff4d4d";
-}
 }
 
-btnLogar.addEventListener("click", loginUsuario);
+ 
+formulario.addEventListener("submit", loginUsuario);

@@ -7,22 +7,22 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="icon" href="/img/logoByteCurto.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <div class="card">
-
         <img src="/img/logoByteCurto.png" alt="Logo ByteCurto" class="logo">
 
         <h1>Login</h1>
         <p id="mensagem-erro">Crie links curtos em segundos com o ByteCurto</p>
-        <form action="" id="bytecurto-formulario">
-            <input type="text" name="email" id="email" placeholder="Email">
-            <input type="password" name="senha" id="senha"  placeholder="Senha">
-            <button type="button" id="btnLogar">Logar</button>
+        
+        <form id="bytecurto-formulario">
+            <input type="text" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+            <button type="submit" id="btnLogar">Logar</button>
         </form>
     </div>
 </body>
 <script type="module" src="/js/pages/login.js"></script>
-</html>
+</html> 

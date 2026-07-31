@@ -1,5 +1,5 @@
-import { API_URL } from "../api/authApi";
-import { API_URL_LOGIN } from "../api/authApi";
+const API_URL = "http://localhost:8080/v1/users";
+const  API_URL_LOGIN = "http://localhost:8080/login";
 
 export async function cadastrarUsuarioService(dadosUsuario) {
     const resposta = await fetch(API_URL, {

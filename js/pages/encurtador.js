@@ -9,67 +9,71 @@ const secaoResultado = document.getElementById("secao-resultado");
 const linkGerado = document.getElementById("link-gerado");
 const btnCopiar = document.getElementById("btn-copiar");
 
-async function encurtarLink(event){
-    event.preventDefault();
+const BASE_URL_REDIRECT = "http://localhost:8080/redirecionar/";
 
-  const token = storage.obterToken();
+async function encurtarLink() {
+    const token = storage.obterToken();
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
 
-  if(!token){
-    window.location.href = "login.html";
-    return;
-  }
+    const urlLimpa = inputUrl.value.trim();
+    if (!validarCamposUrl(urlLimpa)) {
+        mensagemStatus.textContent = "URL inválida!";
+        mensagemStatus.style.color = "#ff4d4d";
+        return;
+    }
 
-const urlLimpa = inputUrl.value.trim();
+    const dadosLink = {
+        urlOriginal: urlLimpa
+    };
 
-if(!validarCamposUrl(urlLimpa)){
-    return;
+    try {
+        mensagemStatus.textContent = "Encurtando Link...";
+        mensagemStatus.style.color = "#3498DB";
+
+        const resposta = await encurtarLinkService(dadosLink, token);
+
+        if (resposta.ok) {
+            const dados = await resposta.json();
+
+       
+            const codigoCurto = dados.shortCode || dados.codigoCurto; 
+            
+            linkGerado.textContent = `${BASE_URL_REDIRECT}${codigoCurto}`;
+            secaoResultado.style.display = "block"; 
+
+            mensagemStatus.textContent = "Link Encurtado com sucesso!";
+            mensagemStatus.style.color = "#2ECC71";
+            inputUrl.value = "";
+        } else {
+            const erroServidor = await resposta.json();
+            mensagemStatus.textContent = erroServidor.mensagem || "Erro ao encurtar Url";
+            mensagemStatus.style.color = "#ff4d4d";
+        }
+    } catch (error) {
+        mensagemStatus.textContent = "Não foi possível conectar ao servidor";
+        mensagemStatus.style.color = "#ff4d4d";
+    }
 }
 
-const dadosLink = {
-  urlOriginal: urlLimpa
-};
-
-try {
-  mensagemStatus.textContent = "Encurtando Link...";
-  mensagemStatus.style.color = "#3498DB";
-
-  const resposta = await encurtarLinkService(dadosLink, token);
-
-  if(resposta.ok){
-    const dados = await resposta.json();
-
-    linkGerado.urlEncurtada;
-    secaoResultado.style.color = "block";
-
-    mensagemStatus.textContent = "Link Encurtado com sucesso";
-    mensagemStatus.style.color = "#2ECC71";
-    inputUrl.value = "";
-  } else {
-    const erroServidor = await resposta.json();
-    mensagemStatus.textContent = erroServidor.mensagem || "Erro ao encurtar Url";
-    mensagemStatus.style.color = "#ff4d4d";
-  }
-} catch (error) {
-  mensagemStatus.textContent = "Não foi possivel conectar ao servidor";
-  mensagemStatus.style.color = "#ff4d4d";
-}
-}
-
-function copiarLink(){
-const textoParaCopiar = linkGerado.textContent;
-navigator.clipboard.writeText(textoParaCopiar).then(() => {
-  const textoOriginal = btnCopiar.textContent;
+function copiarLink() {
+    const textoParaCopiar = linkGerado.textContent;
+    navigator.clipboard.writeText(textoParaCopiar).then(() => {
+        const textoOriginal = btnCopiar.textContent;
         btnCopiar.textContent = "Copiado!";
         btnCopiar.style.backgroundColor = "#2ECC71";
         
         setTimeout(() => {
-            btnCopiar.textContent = textOriginal;
+            btnCopiar.textContent = textoOriginal;
             btnCopiar.style.backgroundColor = "";
         }, 2000);
     }).catch(err => {
         console.error("Erro ao copiar link: ", err);
     });
 }
+
 
 btnEncurtar.addEventListener("click", encurtarLink);
 btnCopiar.addEventListener("click", copiarLink);

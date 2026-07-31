@@ -6,7 +6,9 @@
     <title>ByteCurto - Encurtador</title>
     <link rel="stylesheet" href="/css/encurtador.css">
     <link rel="icon" href="/img/logoByteCurto.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -19,16 +21,13 @@
 
     <div class="box-url">
         <input type="text" id="url-original" placeholder="Cole sua URL aqui">
-        
         <button id="btn-encurtar">Encurtar</button>
     </div>
 
-    <div class="resultado" id="secao-resultado">
+    <div class="resultado" id="secao-resultado" style="display: none;">
         <p>Seu link curto:</p>
-
         <div class="link-box">
-            <span id="link-gerado">bytecurto.com/a8F91x</span>
-
+            <span id="link-generated" style="display:none;"></span> <span id="link-gerado"></span>
             <button id="btn-copiar">Copiar</button>
         </div>
     </div>
