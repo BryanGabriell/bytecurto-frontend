@@ -32,24 +32,21 @@ async function encurtarLink() {
     try {
         mensagemStatus.textContent = "Encurtando Link...";
         mensagemStatus.style.color = "#3498DB";
-
+        
         const resposta = await encurtarLinkService(dadosLink, token);
-
+        
         if (resposta.ok) {
             const dados = await resposta.json();
-
-       
             const codigoCurto = dados.shortCode || dados.codigoCurto; 
             
             linkGerado.textContent = `${BASE_URL_REDIRECT}${codigoCurto}`;
             secaoResultado.style.display = "block"; 
-
-            mensagemStatus.textContent = "Link Encurtado com sucesso!";
+            mensagemStatus.textContent = "Link encurtado com sucesso!";
             mensagemStatus.style.color = "#2ECC71";
             inputUrl.value = "";
         } else {
             const erroServidor = await resposta.json();
-            mensagemStatus.textContent = erroServidor.mensagem || "Erro ao encurtar Url";
+            mensagemStatus.textContent = erroServidor.mensagem || "Erro ao encurtar URL";
             mensagemStatus.style.color = "#ff4d4d";
         }
     } catch (error) {
@@ -73,7 +70,6 @@ function copiarLink() {
         console.error("Erro ao copiar link: ", err);
     });
 }
-
 
 btnEncurtar.addEventListener("click", encurtarLink);
 btnCopiar.addEventListener("click", copiarLink);

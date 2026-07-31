@@ -2,10 +2,16 @@ import { validarCamposLogin } from "../utils/validation.js";
 import { loginUsuarioService } from "../services/authService.js";
 import { storage } from "../utils/storage.js";
 
+
+const tokenExistente = storage.obterToken();
+if (tokenExistente) {
+    window.location.href = "encurtador.html";
+}
+
 const inputEmail = document.getElementById("email");
 const inputSenha = document.getElementById("senha");
 const mensagemErro = document.getElementById("mensagem-erro");
-const formulario = document.getElementById("bytecurto-formulario"); 
+const formulario = document.getElementById("bytecurto-formulario");
 
 async function loginUsuario(event) {
     event.preventDefault(); 
@@ -25,22 +31,20 @@ async function loginUsuario(event) {
     try {
         mensagemErro.textContent = "Autenticando...";
         mensagemErro.style.color = "#3498DB";
-
+        
         const resposta = await loginUsuarioService(dadosLogin);
         
         if (resposta.ok) {
             const dados = await resposta.json();
             const token = dados.token;
-
             storage.salvarToken(token);
-
+            
             mensagemErro.textContent = "Login realizado com sucesso! Entrando...";
             mensagemErro.style.color = "#2ECC71";
-
+            
             setTimeout(() => {
                 window.location.href = "encurtador.html";
             }, 1500);
-
         } else {
             const erroServidor = await resposta.json();
             mensagemErro.textContent = erroServidor.mensagem || "E-mail ou senha incorretos.";
@@ -52,5 +56,4 @@ async function loginUsuario(event) {
     }
 }
 
- 
 formulario.addEventListener("submit", loginUsuario);
