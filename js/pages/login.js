@@ -38,7 +38,7 @@ async function loginUsuario(event) {
             mensagemErro.style.color = "#2ECC71";
 
             setTimeout(() => {
-                window.location.href = "/pages/encurtador.html";
+                window.location.href = "encurtador.html";
             }, 1500);
 
         } else {

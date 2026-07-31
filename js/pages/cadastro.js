@@ -32,7 +32,7 @@ async function cadastrarUsuario(event){
         paragrafoErro.style.color = "#2ecc71";
 
         setTimeout(() => {
-            window.location.href = "/pages/login.html";
+            window.location.href = "login.html";
         }, 2000);
     } else {
         const erroServidor = await resposta.json();

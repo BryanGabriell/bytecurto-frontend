@@ -9,7 +9,7 @@ const secaoResultado = document.getElementById("secao-resultado");
 const linkGerado = document.getElementById("link-gerado");
 const btnCopiar = document.getElementById("btn-copiar");
 
-const BASE_URL_REDIRECT = "http://localhost:8080/redirecionar/";
+const BASE_URL_REDIRECT = "http://18.116.82.128:8080/redirecionar/";
 
 async function encurtarLink() {
     const token = storage.obterToken();
