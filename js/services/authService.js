@@ -1,5 +1,5 @@
-const API_URL = "http://18.116.82.128:8080/v1/users";
-const API_URL_LOGIN = "http://18.116.82.128:8080/login";
+const API_URL = "/api/v1/users";
+const API_URL_LOGIN = "/api/login";
 
 export async function cadastrarUsuarioService(dadosUsuario) {
     const resposta = await fetch(API_URL, {
@@ -12,7 +12,6 @@ export async function cadastrarUsuarioService(dadosUsuario) {
     
     return resposta;
 }
-
 
 export async function loginUsuarioService(dadosLogin) {
     const resposta = await fetch(API_URL_LOGIN, {
