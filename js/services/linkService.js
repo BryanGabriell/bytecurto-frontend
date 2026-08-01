@@ -1,4 +1,4 @@
-const LINK_API_URL = "/api/api/links/encurtar";
+const API_URL = "/api/links/encurtar";
 
 export async function encurtarLinkService(dadosLink, token) {
     const resposta = await fetch(LINK_API_URL, {

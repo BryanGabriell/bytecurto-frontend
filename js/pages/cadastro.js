@@ -25,6 +25,9 @@ async function cadastrarUsuario(event) {
     };
 
     try {
+        paragrafoErro.textContent = "Cadastrando...";
+        paragrafoErro.style.color = "#3498DB";
+
         const resposta = await cadastrarUsuarioService(dadosUsuario);
         
         if (resposta.ok) {
@@ -36,7 +39,8 @@ async function cadastrarUsuario(event) {
             }, 2000);
         } else {
             const erroServidor = await resposta.json();
-            paragrafoErro.textContent = erroServidor.mensagem || "Erro ao cadastrar usuário";
+            // Pega a mensagem de erro da API (ex: "A senha deve ter no mínimo 8 caracteres")
+            paragrafoErro.textContent = erroServidor.mensagem || erroServidor.message || erroServidor.error || "Erro ao cadastrar usuário.";
             paragrafoErro.style.color = "#ff4d4d";
         }
     } catch (error) {

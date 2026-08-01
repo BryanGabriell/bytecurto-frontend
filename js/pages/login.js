@@ -2,7 +2,7 @@ import { validarCamposLogin } from "../utils/validation.js";
 import { loginUsuarioService } from "../services/authService.js";
 import { storage } from "../utils/storage.js";
 
-
+// Redireciona se o usuário já estiver autenticado
 const tokenExistente = storage.obterToken();
 if (tokenExistente) {
     window.location.href = "encurtador.html";
@@ -47,7 +47,7 @@ async function loginUsuario(event) {
             }, 1500);
         } else {
             const erroServidor = await resposta.json();
-            mensagemErro.textContent = erroServidor.mensagem || "E-mail ou senha incorretos.";
+            mensagemErro.textContent = erroServidor.mensagem || erroServidor.message || erroServidor.error || "E-mail ou senha incorretos.";
             mensagemErro.style.color = "#ff4d4d";
         }
     } catch (error) {
