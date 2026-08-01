@@ -9,8 +9,6 @@ const secaoResultado = document.getElementById("secao-resultado");
 const linkGerado = document.getElementById("link-gerado");
 const btnCopiar = document.getElementById("btn-copiar");
 
-const BASE_URL_REDIRECT = "/api/redirecionar/";
-
 async function encurtarLink() {
     const token = storage.obterToken();
     if (!token) {
@@ -37,9 +35,14 @@ async function encurtarLink() {
         
         if (resposta.ok) {
             const dados = await resposta.json();
-            const codigoCurto = dados.shortCode || dados.codigoCurto; 
             
-            linkGerado.textContent = `${BASE_URL_REDIRECT}${codigoCurto}`;
+            
+            const urlCompleta = dados.urlEncurtada || dados.linkEncurtado; 
+            
+            
+            linkGerado.textContent = urlCompleta;
+            linkGerado.href = urlCompleta;
+
             secaoResultado.style.display = "block"; 
             mensagemStatus.textContent = "Link encurtado com sucesso!";
             mensagemStatus.style.color = "#2ECC71";

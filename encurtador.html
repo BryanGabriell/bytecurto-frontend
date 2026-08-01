@@ -25,7 +25,8 @@
         <div class="resultado" id="secao-resultado" style="display: none;">
             <p>Seu link curto:</p>
             <div class="link-box">
-                <span id="link-gerado"></span>
+                <!-- Alterado para <a> para aceitar cliques diretos sem quebrar rotas -->
+                <a id="link-gerado" href="#" target="_blank" rel="noopener noreferrer"></a>
                 <button id="btn-copiar">Copiar</button>
             </div>
         </div>
