@@ -37,7 +37,7 @@ async function encurtarLink() {
             const dados = await resposta.json();
             
             
-            const urlCompleta = dados.urlEncurtada || dados.linkEncurtado; 
+           const urlCompleta = dados.urlEncurtadaCompleta || dados.urlEncurtada || dados.linkEncurtado; 
             
             
             linkGerado.textContent = urlCompleta;
