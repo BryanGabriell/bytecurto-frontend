@@ -5,6 +5,10 @@
       "destination": "http://18.116.82.128:8080/login"
     },
     {
+      "source": "/v1/users",
+      "destination": "http://18.116.82.128:8080/v1/users"
+    },
+    {
       "source": "/v1/users/:path*",
       "destination": "http://18.116.82.128:8080/v1/users/:path*"
     },
