@@ -45,13 +45,8 @@ async function encurtarLink(event) {
         if (resposta.ok) {
             const dados = await resposta.json();
             
-
-            let urlFinal = dados.urlEncurtadaCompleta || dados.urlEncurtada || dados.urlCompleta;
-
-            if (!urlFinal) {
-                urlFinal = `${window.location.origin}/redirecionar/${dados.shortCode}`;
-            }
-
+            const urlFinal = `${window.location.origin}/redirecionar/${dados.shortCode}`;
+            
             linkGerado.textContent = urlFinal;
             linkGerado.href = urlFinal;
 
