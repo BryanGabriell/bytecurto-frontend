@@ -44,9 +44,10 @@ async function encurtarLink(event) {
 
         if (resposta.ok) {
             const dados = await resposta.json();
-            
-            // Pega a URL completa tratada pelo Java (ex: https://bytecurto-frontend.vercel.app/redirecionar/5SZVGP8w2o)
-            const urlFinal = dados.urlEncurtadaCompleta || dados.urlEncurtada || `${window.location.origin}/redirecionar/${dados.shortCode}`;
+            const urlFinal = dados.urlEncurtadaCompleta 
+                || dados.urlEncurtada 
+                || dados.urlCompleta 
+                || `/redirecionar/${dados.shortCode}`;
             
             linkGerado.textContent = urlFinal;
             linkGerado.href = urlFinal;
