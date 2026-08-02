@@ -35,7 +35,6 @@ async function encurtarLink(event) {
         
         const resposta = await encurtarLinkService(dadosLink, token);
         
-        
         if (resposta.status === 401) {
             storage.removerToken();
             alert("Sua sessão expirou. Faça login novamente.");
@@ -43,22 +42,20 @@ async function encurtarLink(event) {
             return;
         }
 
-        
         if (resposta.ok) {
             const dados = await resposta.json();
             
-            const baseUrl = window.location.origin;
-            const urlCompleta = `${baseUrl}/${dados.shortCode}`; 
+            // Pega a URL completa tratada pelo Java (ex: https://bytecurto-frontend.vercel.app/redirecionar/5SZVGP8w2o)
+            const urlFinal = dados.urlEncurtadaCompleta || dados.urlEncurtada || `${window.location.origin}/redirecionar/${dados.shortCode}`;
             
-            linkGerado.textContent = urlCompleta;
-            linkGerado.href = urlCompleta;
+            linkGerado.textContent = urlFinal;
+            linkGerado.href = urlFinal;
 
             secaoResultado.style.display = "block"; 
             mensagemStatus.textContent = "Link encurtado com sucesso!";
             mensagemStatus.style.color = "#2ECC71";
             inputUrl.value = "";
         } else {
-           
             const erroServidor = await resposta.json().catch(() => ({}));
             mensagemStatus.textContent = erroServidor.mensagem || erroServidor.message || "Erro no servidor ao encurtar URL";
             mensagemStatus.style.color = "#ff4d4d";
