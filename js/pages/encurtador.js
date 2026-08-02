@@ -9,7 +9,9 @@ const secaoResultado = document.getElementById("secao-resultado");
 const linkGerado = document.getElementById("link-gerado");
 const btnCopiar = document.getElementById("btn-copiar");
 
-async function encurtarLink() {
+async function encurtarLink(event) {
+    if (event) event.preventDefault();
+
     const token = storage.obterToken();
     if (!token) {
         window.location.href = "login.html";
@@ -33,12 +35,18 @@ async function encurtarLink() {
         
         const resposta = await encurtarLinkService(dadosLink, token);
         
+        
+        if (resposta.status === 401) {
+            storage.removerToken();
+            alert("Sua sessão expirou. Faça login novamente.");
+            window.location.href = "login.html";
+            return;
+        }
+
         if (resposta.ok) {
             const dados = await resposta.json();
             
-            
-           const urlCompleta = dados.urlEncurtadaCompleta || dados.urlEncurtada || dados.linkEncurtado; 
-            
+            const urlCompleta = dados.urlEncurtadaCompleta || dados.urlEncurtada || dados.linkEncurtado; 
             
             linkGerado.textContent = urlCompleta;
             linkGerado.href = urlCompleta;
@@ -49,10 +57,11 @@ async function encurtarLink() {
             inputUrl.value = "";
         } else {
             const erroServidor = await resposta.json();
-            mensagemStatus.textContent = erroServidor.mensagem || "Erro ao encurtar URL";
+            mensagemStatus.textContent = erroServidor.mensagem || erroServidor.message || "Erro ao encurtar URL";
             mensagemStatus.style.color = "#ff4d4d";
         }
     } catch (error) {
+        console.error("Erro no encurtador:", error);
         mensagemStatus.textContent = "Não foi possível conectar ao servidor";
         mensagemStatus.style.color = "#ff4d4d";
     }
