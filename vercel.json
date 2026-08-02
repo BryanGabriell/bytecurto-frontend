@@ -1,12 +1,20 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "http://18.116.82.128:8080/api/:path*"
+      "source": "/login",
+      "destination": "http://18.116.82.128:8080/login"
     },
     {
-      "source": "/redirecionar/:shortCode",
-      "destination": "http://18.116.82.128:8080/redirecionar/:shortCode"
+      "source": "/v1/users/:path*",
+      "destination": "http://18.116.82.128:8080/v1/users/:path*"
+    },
+    {
+      "source": "/api/links/:path*",
+      "destination": "http://18.116.82.128:8080/api/links/:path*"
+    },
+    {
+      "source": "/redirecionar/:path*",
+      "destination": "http://18.116.82.128:8080/redirecionar/:path*"
     }
   ]
 }

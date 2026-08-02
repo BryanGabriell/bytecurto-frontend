@@ -1,5 +1,5 @@
-const API_URL = "/api/v1/users";
-const API_URL_LOGIN = "/api/login";
+const API_URL = "/v1/users";
+const API_URL_LOGIN = "/login";
 
 export async function cadastrarUsuarioService(dadosUsuario) {
     const resposta = await fetch(API_URL, {
