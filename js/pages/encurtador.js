@@ -43,17 +43,24 @@ async function encurtarLink(event) {
         }
 
         if (resposta.ok) {
-            const dados = await resposta.json();
-            
-            const urlFinal = `${window.location.origin}/redirecionar/${dados.shortCode}`;
-            
-            linkGerado.textContent = urlFinal;
-            linkGerado.href = urlFinal;
+    const dados = await resposta.json();
+    
+    const retorno = dados.shortCode || dados.urlEncurtadaCompleta || dados.urlEncurtada || "";
 
-            secaoResultado.style.display = "block"; 
-            mensagemStatus.textContent = "Link encurtado com sucesso!";
-            mensagemStatus.style.color = "#2ECC71";
-            inputUrl.value = "";
+   
+    const codigoLimpo = retorno.split('/').pop().trim();
+
+  
+    const urlFinal = `${window.location.origin}/redirecionar/${codigoLimpo}`;
+
+    linkGerado.textContent = ""; 
+    linkGerado.textContent = urlFinal;
+    linkGerado.href = urlFinal;
+
+    secaoResultado.style.display = "block"; 
+    mensagemStatus.textContent = "Link encurtado com sucesso!";
+    mensagemStatus.style.color = "#2ECC71";
+    inputUrl.value = "";
         } else {
             const erroServidor = await resposta.json().catch(() => ({}));
             mensagemStatus.textContent = erroServidor.mensagem || erroServidor.message || "Erro no servidor ao encurtar URL";
